@@ -1,7 +1,7 @@
 resource "aws_security_group" "bastionsecuritygp" {
   name        = "bastion security gp"
   description = "Allow SSH inbound connections"
-  vpc_id      = aws_vpc.my_vpc.id
+  vpc_id      = module.network.vpc-id
 
   ingress {
     from_port   = 22
@@ -24,7 +24,7 @@ resource "aws_security_group" "bastionsecuritygp" {
 resource "aws_security_group" "privatesecuritygp" {
   name        = "private security gp"
   description = "Allow SSH and port 3000 inbound connections"
-  vpc_id      = aws_vpc.my_vpc.id
+  vpc_id      = module.network.vpc-id
 
   ingress {
     from_port   = 22
@@ -36,7 +36,7 @@ resource "aws_security_group" "privatesecuritygp" {
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"
-    cidr_blocks = [aws_vpc.my_vpc.cidr_block]
+    cidr_blocks = [var.cidr]
   }
   egress {
     from_port   = 0

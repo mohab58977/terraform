@@ -20,10 +20,4 @@ output "vpc-id" {
   value = aws_vpc.my_vpc.id
 }
 
-output "sg_allow_ssh_id" {
-  value = aws_security_group.bastionsecuritygp.id
-}
 
-output "sg_allow_ssh_3000_id" {
-  value = aws_security_group.privatesecuritygp.id
-}
