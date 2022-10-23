@@ -1,0 +1,75 @@
+[33mcommit fa3c0bf8e9dcdac74dc1d666abd86b92d030414c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: mohab <mohab5897@gmail.com>
+Date:   Sun Oct 23 15:43:37 2022 +0200
+
+    ses-notification
+
+[1mdiff --git a/lambdacode.py b/lambdacode.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4329788[m
+[1m--- /dev/null[m
+[1m+++ b/lambdacode.py[m
+[36m@@ -0,0 +1,50 @@[m
+[32m+[m[32mimport boto3[m
+[32m+[m[32mfrom botocore.exceptions import ClientError[m
+[32m+[m[41m  [m
+[32m+[m[32mdef lambda_handler(event, context):[m
+[32m+[m[32m    sender_email_address = 'mohab.mohamed.hasan@gmail.com'[m
+[32m+[m[41m  [m
+[32m+[m[32m    receiver_email_address = 'mohab5897@gmail.com'[m
+[32m+[m[41m  [m
+[32m+[m[32m    aws_region_name = "aws region"[m
+[32m+[m[41m  [m
+[32m+[m[32m    email_subject = "Subject name"[m
+[32m+[m[41m  [m
+[32m+[m[32m    html_body = ("<html>"[m
+[32m+[m[32m        "<body>"[m
+[32m+[m[32m        "<p>Dear Admin,</p>"[m
+[32m+[m[32m        "<br>"[m
+[32m+[m[32m        "<p>New Object Added in the bucket.</p>"[m
+[32m+[m[32m        "</body>"[m
+[32m+[m[32m        "</html>")[m
+[32m+[m[41m  [m
+[32m+[m[32m    charset = "UTF-8"[m
+[32m+[m[41m  [m
+[32m+[m[32m    ses_resource = boto3.client('ses', region_name = aws_region_name)[m
+[32m+[m[41m  [m
+[32m+[m[32m    try:[m
+[32m+[m[32m        response = ses_resource.send_email([m
+[32m+[m[32m                Destination = {[m
+[32m+[m[32m                    'ToAddresses': [[m
+[32m+[m[32m                        receiver_email_address,[m
+[32m+[m[32m                    ],[m
+[32m+[m[32m                },[m
+[32m+[m[32m                Message = {[m
+[32m+[m[32m                    'Body': {[m
+[32m+[m[32m                        'Html': {[m
+[32m+[m[32m                            'Charset': charset,[m
+[32m+[m[32m                            'Data': html_body,[m
+[32m+[m[32m                        },[m
+[32m+[m[32m                    },[m
+[32m+[m[32m                    'Subject': {[m
+[32m+[m[32m                        'Charset': charset,[m
+[32m+[m[32m                        'Data': email_subject,[m
+[32m+[m[32m                    },[m
+[32m+[m[32m                },[m
+[32m+[m[32m                Source = sender_email_address,[m
+[32m+[m[32m            )[m
+[32m+[m[41m  [m
+[32m+[m[32m    except ClientError as e:[m
+[32m+[m[32m        print("Email Delivery Failed! ", e.response['Error']['Message'])[m
+[32m+[m[32m    else:[m
+[32m+[m[32m        print("Email successfully sent to " + receiver_email_address + "!")[m
+\ No newline at end of file[m
+[1mdiff --git a/screenshots/48fbd9b5-9ef1-492b-883b-2f365132dafd.jpeg b/screenshots/48fbd9b5-9ef1-492b-883b-2f365132dafd.jpeg[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9ebed96[m
+Binary files /dev/null and b/screenshots/48fbd9b5-9ef1-492b-883b-2f365132dafd.jpeg differ
+[1mdiff --git a/screenshots/Screenshot from 2022-10-23 15-33-27.png b/screenshots/Screenshot from 2022-10-23 15-33-27.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7af884e[m
+Binary files /dev/null and b/screenshots/Screenshot from 2022-10-23 15-33-27.png differ
+[1mdiff --git a/screenshots/Screenshot from 2022-10-23 15-35-03.png b/screenshots/Screenshot from 2022-10-23 15-35-03.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9d2045f[m
+Binary files /dev/null and b/screenshots/Screenshot from 2022-10-23 15-35-03.png differ
